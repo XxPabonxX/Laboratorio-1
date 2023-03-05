@@ -13,8 +13,12 @@ int Menu(void);
 int Menu2(void);
 
 int Problema2(void);
+int Problema4(void);
 int Problema6(void);
 int Problema8(void);
+int Problema10(void);
+int Problema12(void);
+int Problema14(void);
 
 int main(){
 
@@ -45,6 +49,18 @@ int main(){
 
             break;
 
+        case 4:
+
+            do {
+
+                Problema4();
+                opcion2 = Menu2();
+                Limpiar_pantalla();
+
+            } while (opcion2 == 2);
+
+            break;
+
         case 6:
 
             do {
@@ -68,6 +84,43 @@ int main(){
             } while (opcion2 == 2);
 
             break;
+
+        case 10:
+
+            do {
+
+                Problema10();
+                opcion2 = Menu2();
+                Limpiar_pantalla();
+
+            } while (opcion2 == 2);
+
+            break;
+
+        case 12:
+
+            do {
+
+                Problema12();
+                opcion2 = Menu2();
+                Limpiar_pantalla();
+
+            } while (opcion2 == 2);
+
+            break;
+
+        case 14:
+
+            do {
+
+                Problema14();
+                opcion2 = Menu2();
+                Limpiar_pantalla();
+
+            } while (opcion2 == 2);
+
+            break;
+
 
         default:
 
@@ -104,17 +157,16 @@ int Menu(void) {
     cout << "0. Para salir." << endl;
     for (int i = 2; i <= 16; i += 2) {
 
-        cout << i << ".  Para ir al punto " << i << "." << endl;
+        cout << i << ". Para ir al punto " << i << "." << endl;
 
     }
-
+    cout << "17. Para ir al punto 17." <<endl;
     cout << endl << "Ingrese la opcio: ";
     cin >> opcion;
 
     return opcion;
 
 }
-
 int Menu2(void) {
 
     int opcion2 = 0;
@@ -127,6 +179,9 @@ int Menu2(void) {
     return opcion2;
 
 }
+
+int factorial(int numero);
+int num_inv(int num);
 
 int Problema2(void){
 
@@ -218,8 +273,81 @@ int Problema2(void){
 
     return 0;
 }
+int Problema4(void){
 
-int factorial(int numero);
+    int hora1 = 0, hora2 = 0, min1 = 0, min2 = 0, ht = 0, mt = 0;
+    bool B = true;
+
+    cout << "Ingresa una la primera hora: ";
+    cin >> hora1;
+
+    cout << "Ingresa una la segunda hora: ";
+    cin >> hora2;
+
+    while(B!=false){
+
+        min1 = hora1%100;
+        hora1 = hora1/100;
+        min2 = hora2%100;
+        hora2 = hora2/100;
+        B=false;
+
+    }
+
+    ht = (hora1 + hora2);
+    mt = (min1 + min2);
+
+    if(ht>24){
+
+        B = true;
+
+        while(B!=false){
+
+           cout << "reingresa los datos de la hora y minutos, te pasaste del dia " << ht << " " << endl;
+           cout << "Ingresa la primera hora: ";
+           cin >> hora1;
+
+           cout << "Ingresa la segunda hora: ";
+           cin>>hora2;
+
+           min1 = hora1%100;
+           hora1 = hora1/100;
+           min2 = hora2%100;
+           hora2 = hora2/100;
+
+           ht=hora1+hora2;
+           mt=min1+min2;
+
+           if(ht<24){
+
+               break;
+
+           }
+
+        }
+
+    }
+
+    else if(mt>60){
+
+        ht+=1;
+        mt-=60;
+
+        if(ht>24){
+
+            cout<<"reingresa los datos, te pasaste del día"<<ht<<mt;
+
+        }
+        else{
+
+            cout<<"La hora es: "<<ht<<mt;
+
+        }
+
+    }
+
+    return 0;
+}
 int Problema6(void){
 
     int numero = 0;
@@ -241,23 +369,6 @@ int Problema6(void){
     return 0;
 
 }
-int factorial(int numero){
-
-    int numerofactorial = numero;
-
-    if (numerofactorial > 1){
-
-        numerofactorial *= factorial(numero-1);
-        return numerofactorial;
-
-    }else{
-
-        return 1;
-
-    }
-
-}
-
 int Problema8(void){
 
     int a = 0, b = 0, c = 0, suma = 0;
@@ -300,4 +411,156 @@ int Problema8(void){
     return 0;
 
 }
+int Problema10(void){
 
+    int numero = 0, numero_primo = 0, contador = 0, base = 2;
+
+    cout << "Ingrese un numero: ";
+    cin >> numero;
+    cout << endl;
+
+    while (contador < numero){
+
+        for(int i = 2; i<= base; i++){
+
+            if (i != base && base%i == 0){
+
+                break;
+
+            }else if(i==base){
+
+                numero_primo = base;
+                contador++;
+
+            }
+
+        }
+
+        base++;
+
+    }
+
+    cout << "El " << numero << " numero primo es el numero para: " << numero_primo << endl;
+
+    return 0;
+}
+int Problema12(void){
+
+    int num = 0, mf_prim = 1;
+    bool es_primo = false;
+
+    cout<<"Ingresa un numero: ";
+    cin >> num;
+
+
+    for (int i = 2; i<=num; i++){
+
+        if (num%i == 0){
+
+            for (int j=2; j<=i; j++){
+
+                if (i%j == 0){
+
+                    if (i == j){
+
+                        es_primo = true;
+
+                    }
+                    else{
+
+                        es_primo = false;
+
+                    break;
+                    }
+                }
+                else{
+
+                    es_primo = false;
+
+                }
+
+            }
+
+        }
+
+        else {
+
+            es_primo = false;
+
+        }
+
+        if (es_primo == true){
+
+            mf_prim = i;
+
+        }
+
+    }
+
+    cout<< "El mayor factor primo de "<<num<<" es: "<<mf_prim<<endl;
+
+    return 0;
+
+}
+int Problema14(void){
+
+        int num = 0,copia_num = 0,copia_mul_1 = 0,copia_mul_2 = 0, evalua = 0;
+
+        cout<<"Ingrese un numero de tres digitos: ";
+        cin>>evalua;
+
+        for (int mul_1 = 1; mul_1 <= evalua; mul_1++){
+
+            for (int mul_2 = 1; mul_2 <= evalua; mul_2++){
+
+                num = mul_1 * mul_2;
+
+                if (num == num_inv(num)){
+
+                    if (num>copia_num){
+
+                        copia_num = num;
+                        copia_mul_1 = mul_1;
+                        copia_mul_2 = mul_2;
+
+                    }
+                }
+            }
+        }
+
+        cout << copia_mul_1 << "*" << copia_mul_2 << " = " << copia_num<<endl;
+
+        return 0;
+
+    }
+
+int factorial(int numero){
+
+    int numerofactorial = numero;
+
+    if (numerofactorial > 1){
+
+        numerofactorial *= factorial(numero-1);
+        return numerofactorial;
+
+    }else{
+
+        return 1;
+
+    }
+
+}
+int num_inv(int num){
+
+    int inv=0;
+
+    while(num>0){
+
+        inv= inv * 10 + (num % 10);
+        num = num / 10;
+
+    }
+
+    return inv;
+
+}
