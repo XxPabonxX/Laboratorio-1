@@ -19,6 +19,8 @@ int Problema8(void);
 int Problema10(void);
 int Problema12(void);
 int Problema14(void);
+int Problema16(void);
+int Problema17(void);
 
 int main(){
 
@@ -114,6 +116,30 @@ int main(){
             do {
 
                 Problema14();
+                opcion2 = Menu2();
+                Limpiar_pantalla();
+
+            } while (opcion2 == 2);
+
+            break;
+
+        case 16:
+
+            do {
+
+                Problema16();
+                opcion2 = Menu2();
+                Limpiar_pantalla();
+
+            } while (opcion2 == 2);
+
+            break;
+
+        case 17:
+
+            do {
+
+                Problema17();
                 opcion2 = Menu2();
                 Limpiar_pantalla();
 
@@ -506,18 +532,18 @@ int Problema14(void){
 
         int num = 0,copia_num = 0,copia_mul_1 = 0,copia_mul_2 = 0, evalua = 0;
 
-        cout<<"Ingrese un numero de tres digitos: ";
-        cin>>evalua;
+        cout << "Ingrese un numero de tres digitos: ";
+        cin >> evalua;
 
         for (int mul_1 = 1; mul_1 <= evalua; mul_1++){
 
             for (int mul_2 = 1; mul_2 <= evalua; mul_2++){
 
-                num = mul_1 * mul_2;
+                num = (mul_1 * mul_2);
 
                 if (num == num_inv(num)){
 
-                    if (num>copia_num){
+                    if (num > copia_num){
 
                         copia_num = num;
                         copia_mul_1 = mul_1;
@@ -528,11 +554,104 @@ int Problema14(void){
             }
         }
 
-        cout << copia_mul_1 << "*" << copia_mul_2 << " = " << copia_num<<endl;
+        cout << copia_mul_1 << "*" << copia_mul_2 << " = " << copia_num << endl;
 
         return 0;
 
     }
+int Problema16(void){
+
+    int n = 0, k = 0, terminos = 0, maxter = 0, i1 = 0;
+
+    cout << "ingrese numero limite de semilla: ";
+    cin >> k;
+
+
+    for (int i=1; i<=k; i++){
+
+        n=i;
+        terminos=1;
+        cout << n << ": " << n << " ";
+
+        while (n!=1){
+
+            if (n%2 == 0){
+
+                n = n/2;
+                terminos++;
+                cout << n << " ";
+
+            }
+
+            else {
+
+                n = (3*n+1);
+                terminos++;
+                cout << n << " ";
+
+            }
+
+        }
+
+        if (terminos>maxter){
+
+            maxter = terminos;
+            i1 = i;
+
+        }
+
+        cout << endl;
+
+    }
+
+    cout << "La serie mas larga es con la semilla: " << i1 << " y tiene " << maxter << " terminos" << endl;
+
+    return 0;
+
+}
+int Problema17(void){
+
+    int K = 0,  tri = 0,  count = 1, countri = 0;
+    bool B = true;
+
+    cout << "Ingresa un numero: ";
+    cin >> K;
+
+    while(B != false){
+
+        tri = (count * (count+1)/2);
+        cout << tri << ": ";
+
+        for(int i=1; i <= tri; i++){
+
+            if(tri%i==0){
+
+                countri += 1;
+                cout << i << ", ";
+
+            }
+        }
+
+        cout << endl;
+
+        if(countri>=K){
+
+            cout<<"El numero es: "<<tri<<" que tiene "<<countri<<" divisores";
+            B=false;
+            break;
+
+        }else{
+
+            count++;
+            countri=0;
+
+        }
+
+    }
+
+    return 0;
+
+}
 
 int factorial(int numero){
 
@@ -552,12 +671,12 @@ int factorial(int numero){
 }
 int num_inv(int num){
 
-    int inv=0;
+    int inv = 0;
 
-    while(num>0){
+    while(num > 0){
 
-        inv= inv * 10 + (num % 10);
-        num = num / 10;
+        inv = (inv * 10 + (num % 10));
+        num = (num / 10);
 
     }
 
